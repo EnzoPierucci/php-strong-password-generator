@@ -1,9 +1,12 @@
 <?php
+session_start(); // sessione php per passare da una pagina a l'altra 
 require 'functions.php'; // collegamento a  functions
 
-$password = ''; 
 if (isset($_GET['length']) && is_numeric($_GET['length'])) {
     $password = generatePassword((int)$_GET['length']);
+    $_SESSION['generated_password'] = $password; // salva la password in una sessione
+    header('Location: show_password.php'); // reindirizza l'utente
+    exit(); // uscità dalla pagina 
 }
 ?>
 
